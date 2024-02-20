@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
+import AuthActions from "../actions/authActions";
 
 
 export default function SignUpForm() {
@@ -12,8 +13,8 @@ export default function SignUpForm() {
         <CardTitle>Next.js 14 Auth</CardTitle>
         <CardDescription>Complete the form to create your login</CardDescription>
       </CardHeader>
-      <CardContent>
-        <form>
+      <form action={AuthActions.createAccount}>
+        <CardContent>
           <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="name">Name</Label>
@@ -28,16 +29,16 @@ export default function SignUpForm() {
               <Input id="password" name="password" type="password" required />
             </div>
           </div>
-        </form>
-      </CardContent>
-      <CardFooter className="flex justify-between">
-        <Button>Create account</Button>
-        <Link
-          href='/portal/login'
-          className={buttonVariants({ variant: 'link' })}>
-          I have an account
-        </Link>
-      </CardFooter>
+        </CardContent>
+        <CardFooter className="flex justify-between">
+          <Button type="submit">Create account</Button>
+          <Link
+            href='/portal/login'
+            className={buttonVariants({ variant: 'link' })}>
+            I have an account
+          </Link>
+        </CardFooter>
+      </form>
     </Card>
   )
 }

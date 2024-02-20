@@ -6,28 +6,22 @@ const prisma = new PrismaClient()
 
 async function createAccount(formData: FormData) {
   'use server'
-  try {
-    const name = formData.get('name') as string
-    const email = formData.get('email') as string
-    const password = formData.get('password') as string
 
-    const hashedPassword = await bcrypt.hash(password, 10)
+  const name = formData.get('name') as string
+  const email = formData.get('email') as string
+  const password = formData.get('password') as string
 
-    await prisma.user.create({
-      data: {
-        name,
-        email,
-        password: hashedPassword
-      }
-    })
+  const hashedPassword = await bcrypt.hash(password, 10)
 
-    alert('Account created successfully')
-    redirect('/portal/login')
+  await prisma.user.create({
+    data: {
+      name,
+      email,
+      password: hashedPassword
+    }
+  })
 
-  } catch (error) {
-    console.error(error)
-    alert('An error occurred while creating your account')
-  }
+  redirect('/portal/login')
 }
 
 const AuthActions = {

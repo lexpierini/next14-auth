@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 
 
+
 export default function LogInForm() {
   return (
     <Card className="w-[350px]">
@@ -12,8 +13,8 @@ export default function LogInForm() {
         <CardTitle>Next.js 14 Auth</CardTitle>
         <CardDescription>Log in to continue</CardDescription>
       </CardHeader>
-      <CardContent>
-        <form>
+      <form>
+        <CardContent>
           <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="email">Email</Label>
@@ -24,16 +25,16 @@ export default function LogInForm() {
               <Input id="password" name="password" type="password" required />
             </div>
           </div>
-        </form>
-      </CardContent>
-      <CardFooter className="flex justify-between">
-        <Button>Login</Button>
-        <Link
-          href='/portal/sign-up'
-          className={buttonVariants({ variant: 'link' })}>
-          Create an account
-        </Link>
-      </CardFooter>
+        </CardContent>
+        <CardFooter className="flex justify-between">
+          <Button type="submit">Login</Button>
+          <Link
+            href='/portal/sign-up'
+            className={buttonVariants({ variant: 'link' })}>
+            Create an account
+          </Link>
+        </CardFooter>
+      </form>
     </Card>
   )
 }
