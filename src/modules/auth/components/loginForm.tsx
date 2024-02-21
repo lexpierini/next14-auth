@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
+import AuthActions from "../actions/authActions";
 
 
 
@@ -13,7 +14,7 @@ export default function LogInForm() {
         <CardTitle>Next.js 14 Auth</CardTitle>
         <CardDescription>Log in to continue</CardDescription>
       </CardHeader>
-      <form>
+      <form action={AuthActions.login} >
         <CardContent>
           <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-1.5">
