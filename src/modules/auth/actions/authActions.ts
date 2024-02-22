@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client"
 import * as bcrypt from 'bcrypt'
 import { redirect } from "next/navigation"
+import AuthService from "../services/authService"
 
 const prisma = new PrismaClient()
 
@@ -46,7 +47,8 @@ async function login(formData: FormData) {
     throw new Error('Password does not match')
   }
 
-  //TODO: Create JWT section
+  await AuthService.createSessionToken({ sub: user.id, name: user.name, email: user.email })
+
   redirect('/portal')
 }
 
