@@ -22,9 +22,29 @@ async function createSessionToken(payload = {}) {
   })
 }
 
+async function isSessionValid() {
+  const sessionCookie = cookies().get('session')
+
+  if (sessionCookie) {
+    const { value } = sessionCookie
+    const { exp } = await openSessionToken(value)
+    const currentData = new Date().getTime()
+
+    return (exp as number) * 1000 > currentData
+  }
+
+  return false
+}
+
+function destroySession() {
+  cookies().delete('session')
+}
+
 const AuthService = {
   openSessionToken,
-  createSessionToken
+  createSessionToken,
+  isSessionValid,
+  destroySession,
 }
 
 export default AuthService
